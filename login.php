@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $stmt->execute([$input_username]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($input_password, $user['password'])) {
+        if ($user && $input_password === $user['password']) {
             // Login successful
             $_SESSION['admin_logged_in'] = true;
             $_SESSION['admin_username'] = $user['username'];
